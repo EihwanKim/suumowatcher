@@ -17,9 +17,7 @@
 /logs/*
 !/logs/empty
 
-# CakePHP 2
+# Php Storm
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+/.idea/*
+vendor/
