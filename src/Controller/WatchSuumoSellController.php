@@ -24,7 +24,7 @@ use Cake\ORM\TableRegistry;
  * Class WatchSuumoController
  * @package App\Controller
  */
-class WatchSuumoController extends AppController
+class WatchSuumoSellController extends AppController
 {
 
     //ターゲットページURL

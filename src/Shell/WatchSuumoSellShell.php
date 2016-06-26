@@ -19,7 +19,7 @@ class WatchSuumoSellShell extends Shell
     var $record;
     var $floor;
 
-    public function index() {
+    public function main() {
 
         $pageUrl = "http://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ra=030008&jspIdFlg=patternEki&rn=0760&rnek=076076150&kb=1&kt=9999999&mb=0&mt=9999999&ekTjCd=&ekTjNm=&tj=0&et=3&cnb=0&cn=9999999&srch_navi=1";
 
@@ -112,10 +112,5 @@ class WatchSuumoSellShell extends Shell
                 }
             }
         });
-    }
-
-    public function info () {
-        $this->autoRender = false;
-        phpinfo();
     }
 }
