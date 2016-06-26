@@ -61,7 +61,7 @@ class WatchSuumoController extends AppController
                             $this->record['place'] = $key_value_array[$i + 1];
                             break;
                         case '沿線・駅':
-                            $this->record['station'] = $key_value_array[$i + 1];
+                            $this->record['access'] = $key_value_array[$i + 1];
                             break;
                         case '専有面積':
                             $this->record['width'] = $key_value_array[$i + 1];
@@ -85,7 +85,7 @@ class WatchSuumoController extends AppController
             $sell->url = $this->record['url'] ;
             $sell->price = $this->record['price'] ;
             $sell->place = $this->record['place'] ;
-            $sell->station = $this->record['station'] ;
+            $sell->access = $this->record['access'] ;
             $sell->width = $this->record['width'] ;
             $sell->room_type = $this->record['room_type'] ;
             $sell->build_date = $this->record['build_date'] ;
