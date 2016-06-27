@@ -30,9 +30,11 @@ class WatchSuumoSellController extends AppController
     //ターゲットページURL
     var $record;
     var $floor;
+    const SLEEP_SECONDS = 2;
 
     public function index() {
-
+        
+        $this->autoRender = false;
         $pageUrl = "http://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ra=030008&jspIdFlg=patternEki&rn=0760&rnek=076076150&kb=1&kt=9999999&mb=0&mt=9999999&ekTjCd=&ekTjNm=&tj=0&et=3&cnb=0&cn=9999999&srch_navi=1";
 
         $client = new Client();
@@ -106,7 +108,7 @@ class WatchSuumoSellController extends AppController
             return;
         }
 
-        sleep (5);
+        sleep (self::SLEEP_SECONDS);
 
         $client = new Client();
         $crawler = $client->request('GET', $pageUrl);

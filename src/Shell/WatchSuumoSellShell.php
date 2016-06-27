@@ -18,6 +18,7 @@ class WatchSuumoSellShell extends Shell
     //ターゲットページURL
     var $record;
     var $floor;
+    const SLEEP_SECONDS = 2;
 
     public function main() {
 
@@ -94,7 +95,7 @@ class WatchSuumoSellShell extends Shell
             return;
         }
 
-        sleep (5);
+        sleep (self::SLEEP_SECONDS);
 
         $client = new Client();
         $crawler = $client->request('GET', $pageUrl);
