@@ -1,37 +1,24 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link      http://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
+ * Created by PhpStorm.
+ * User: eihwan
+ * Date: 6/26/16
+ * Time: 15:54
  */
-namespace App\Controller;
 
-use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
-use Cake\View\Exception\MissingTemplateException;
+namespace App\Shell;
+
+use Cake\Console\Shell;
 use Goutte\Client;
 use Cake\ORM\TableRegistry;
 
-/**
- * Class WatchSuumoController
- * @package App\Controller
- */
-class WatchSuumoRentController extends AppController
+class WatchSuumoRentShell extends Shell
 {
 
     const SLEEP_SECONDS = 2;
 
-    public function index() {
+    public function main() {
 
-        $this->autoRender = false;
         $pageUrl = "http://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=030&bs=040&ra=008&cb=0.0&ct=9999999&et=5&cn=9999999&mb=80&mt=9999999&shkr1=03&shkr2=03&shkr3=03&shkr4=03&fw2=&ek=076076150&rn=0760";
 
         $client = new Client();
@@ -70,8 +57,6 @@ class WatchSuumoRentController extends AppController
     }
 
     private function detail($pageUrl = '') {
-
-        $this->autoRender = false;
 
         if (!$pageUrl) {
             return;
@@ -115,5 +100,4 @@ class WatchSuumoRentController extends AppController
         $record['created'] = date('Y-m-d');
         return $record;
     }
-
 }
