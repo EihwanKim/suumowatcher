@@ -179,8 +179,8 @@ return [
         'default' => [
             'className' => 'Mail',
             // The following keys are used in SMTP transports
-            'host' => 'localhost',
-            'port' => 25,
+            'host' => '127.0.0.1',
+            'port' => 1025,
             'timeout' => 30,
             'username' => 'user',
             'password' => 'secret',
