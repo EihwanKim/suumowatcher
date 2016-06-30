@@ -29,7 +29,7 @@ class TestController extends AppController
     public function index() {
 
         $email = new Email('default');
-        $email->from(['dev@scotchbox.local' => 'My Site'])
+        $email->from(['eihwan.kim@gmail.com' => 'suumowatcher'])
             ->to('cloz2me@gmail.com')
             ->subject('About')
             ->send('My message');
