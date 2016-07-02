@@ -15,7 +15,7 @@ class EmailUtil
 {
 
     public function send_html_mail($template, $viewVars, $title = 'suumowatcher report', $to = 'cloz2me@gmail.com') {
-debug($viewVars);
+        
         $email = new Email('default');
         $email->from(['eihwan.kim@gmail.com' => 'suumowatcher'])
             ->to($to)

@@ -93,7 +93,6 @@ class WatchSuumoRentUtil {
         $record['access'] = str_replace(array("\r\n", "\r", "\n"), '', $access);
         $record['width'] = $detail_array[12];
         $record['room_type'] = $detail_array[11];
-//        $record['build_date'] = $detail_array[15];
         $gaiyo_str = $crawler->filter('.data_table')->text();
         $gaiyo_str = preg_replace('/\s+/', '|', trim($gaiyo_str));
         $gaiyo_array = explode('|', $gaiyo_str);
