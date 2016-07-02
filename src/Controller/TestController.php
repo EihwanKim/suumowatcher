@@ -15,10 +15,6 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
-use Cake\View\Exception\MissingTemplateException;
-
-use Cake\Mailer\Email;
 
 /**
  * Class WatchSuumoController
@@ -27,11 +23,7 @@ use Cake\Mailer\Email;
 class TestController extends AppController
 {
     public function index() {
-
-        $email = new Email('default');
-        $email->from(['eihwan.kim@gmail.com' => 'suumowatcher'])
-            ->to('cloz2me@gmail.com')
-            ->subject('About')
-            ->send('My message');
+        debug(Configure::read('env'));
+        ;
     }
 }

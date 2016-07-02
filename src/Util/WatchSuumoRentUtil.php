@@ -13,7 +13,7 @@ use Cake\ORM\TableRegistry;
 
 class WatchSuumoRentUtil {
 
-    const SLEEP_SECONDS = 2;
+    const SLEEP_SECONDS = 1;
 
     public function exec() {
 
@@ -32,27 +32,37 @@ class WatchSuumoRentUtil {
             if ($text == '詳細を見る') {
 
                 $record = $this->detail($href);
-                $rentsTable = TableRegistry::get('Rents');
-                $rent = $rentsTable->newEntity();
 
-                $rent->url = $record['url'];
-                $rent->title = $record['title'];
-                $rent->price = $record['price'];
-                $rent->kanri_charge = $record['kanri_charge'];
-                $rent->sikikin = $record['sikikin'];
-                $rent->reikin = $record['reikin'];
-                $rent->place = $record['place'];
-                $rent->access = $record['access'];
-                $rent->width = $record['width'];
-                $rent->room_type = $record['room_type'];
-                $rent->floor = $record['floor'];
-                $rent->build_date = $record['build_date'];
-                $rent->etc = $record['etc'];
-                $rent->created = $record['created'];
-                $rentsTable->save($rent);
+                if ($record) {
+                    $rentsTable = TableRegistry::get('Rents');
+                    $rent = $rentsTable->newEntity();
 
+                    $rent->url = $record['url'];
+                    $rent->title = $record['title'];
+                    $rent->price = $record['price'];
+                    $rent->kanri_charge = $record['kanri_charge'];
+                    $rent->sikikin = $record['sikikin'];
+                    $rent->reikin = $record['reikin'];
+                    $rent->place = $record['place'];
+                    $rent->access = $record['access'];
+                    $rent->width = $record['width'];
+                    $rent->room_type = $record['room_type'];
+                    $rent->floor = $record['floor'];
+                    $rent->build_date = $record['build_date'];
+                    $rent->etc = $record['etc'];
+                    $rent->created = $record['created'];
+                    $rentsTable->save($rent);
+                }
             }
         });
+
+        $rents = TableRegistry::get('Rents');
+        $query = $rents->find();
+        $query->where(['created' => date('Y-m-d')])->order(['id' => 'ASC']);
+        $records = $query->toArray();
+
+        $email = new EmailUtil();
+        $email->send_html_mail('watch_suumo_rent', $records, date('Y-m-d') . 'suumowatcher report rent');
     }
 
     private function detail($pageUrl = '') {
@@ -60,7 +70,7 @@ class WatchSuumoRentUtil {
         $this->autoRender = false;
 
         if (!$pageUrl) {
-            return;
+            return null;
         }
 
         sleep (self::SLEEP_SECONDS);
