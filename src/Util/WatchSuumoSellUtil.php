@@ -86,6 +86,14 @@ class WatchSuumoSellUtil {
 
         });
 
+        $sells = TableRegistry::get('Sells');
+        $query = $sells->find();
+        $query->where(['created' => date('Y-m-d')])->order(['id' => 'ASC']);
+        $records = $query->toArray();
+
+        $email = new EmailUtil();
+        $email->send_html_mail('watch_suumo_sell', $records, date('Y-m-d') . 'suumowatcher report SELL');
+
     }
 
     private function getFloor($pageUrl) {

@@ -62,7 +62,7 @@ class WatchSuumoRentUtil {
         $records = $query->toArray();
 
         $email = new EmailUtil();
-        $email->send_html_mail('watch_suumo_rent', $records, date('Y-m-d') . 'suumowatcher report rent');
+        $email->send_html_mail('watch_suumo_rent', $records, date('Y-m-d') . 'suumowatcher report RENT');
     }
 
     private function detail($pageUrl = '') {
