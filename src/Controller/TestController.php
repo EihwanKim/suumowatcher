@@ -23,7 +23,6 @@ use Cake\Core\Configure;
 class TestController extends AppController
 {
     public function index() {
-        debug(Configure::read('env'));
-        ;
+        phpinfo();
     }
 }
