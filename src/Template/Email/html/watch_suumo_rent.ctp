@@ -1,10 +1,13 @@
-total : <?php count($rents);?>
+total : <?php echo count($vars);?>
 <table>
     <tr>
         <th>ID</th>
         <th>タイトル</th>
         <th>URL</th>
         <th>価格</th>
+        <th>管理費</th>
+        <th>敷金</th>
+        <th>礼金</th>
         <th>所在地</th>
         <th>サクセス</th>
         <th>広さ</th>
@@ -14,13 +17,16 @@ total : <?php count($rents);?>
         <th>抽出日</th>
 </tr>
 <?php
-foreach ($rents as $rent):
+foreach ($vars as $rent):
 ?>
     <tr>
         <td><?php echo $rent['id']; ?>
         <td><?php echo $rent['title']; ?>
         <td><?php echo $rent['url']; ?>
         <td><?php echo $rent['price']; ?>
+        <td><?php echo $rent['kanri_charge']; ?>
+        <td><?php echo $rent['sikikin']; ?>
+        <td><?php echo $rent['reikin']; ?>
         <td><?php echo $rent['place']; ?>
         <td><?php echo $rent['access']; ?>
         <td><?php echo $rent['width']; ?>
@@ -42,7 +48,7 @@ foreach ($rents as $rent):
             <td><?php echo $rent->floor; ?>
             <td><?php echo $rent->created; ?>
         </tr>
-<?
+<?php
 endforeach;
 ?>
 </table>

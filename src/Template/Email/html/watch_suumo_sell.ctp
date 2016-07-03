@@ -1,4 +1,4 @@
-total : <?php count($rents);?>
+total : <?php echo count($vars);?>
 <table>
     <tr>
         <th>ID</th>
@@ -14,7 +14,7 @@ total : <?php count($rents);?>
         <th>抽出日</th>
 </tr>
 <?php
-foreach ($rents as $rent):
+foreach ($vars as $rent):
 ?>
     <tr>
         <td><?php echo $rent['id']; ?>
@@ -42,7 +42,7 @@ foreach ($rents as $rent):
             <td><?php echo $rent->floor; ?>
             <td><?php echo $rent->created; ?>
         </tr>
-<?
+<?php
 endforeach;
 ?>
 </table>
