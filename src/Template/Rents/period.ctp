@@ -1,12 +1,11 @@
 <!--Div that will hold the pie chart-->
 <div id="chart_div"></div>
 
-<? $form = $this->Form;?>
-<?= $form->create(null); ?>
-<?= $form->input('from', ['readonly' => 'readonly', 'id' => 'createdFrom']); ?>
-<?= $form->input('to', ['readonly' => 'readonly', 'id' => 'createdTo']); ?>
-<?= $form->button('Search'); ?>
-<?= $form->end(); ?>
+<?= $this->Form->create(null); ?>
+<?= $this->Form->input('from', ['readonly' => 'readonly', 'id' => 'createdFrom']); ?>
+<?= $this->Form->input('to', ['readonly' => 'readonly', 'id' => 'createdTo']); ?>
+<?= $this->Form->button('Search'); ?>
+<?= $this->Form->end(); ?>
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

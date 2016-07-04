@@ -29,8 +29,11 @@ class RentsController extends AppController
             }
 
             if ($this->request->data['to']) {
-                $query->where(['created <=' => $this->request->data['to']]);
+                $query->where(['created >=' => $this->request->data['from']]);
             }
+        } else {
+            $query->where(['created >=' => date("Y-m-d",strtotime("-3 month"))]);
+            $query->where(['created <=' => date('Y-m-d')]);
         }
 
 
