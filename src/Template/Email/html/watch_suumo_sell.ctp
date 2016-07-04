@@ -1,4 +1,4 @@
-total : <?php echo count($vars);?>
+total : <?= count($vars);?>
 <table>
     <tr>
         <th>ID</th>
@@ -17,30 +17,17 @@ total : <?php echo count($vars);?>
 foreach ($vars as $rent):
 ?>
     <tr>
-        <td><?php echo $rent['id']; ?>
-        <td><?php echo $rent['title']; ?>
-        <td><?php echo $rent['url']; ?>
-        <td><?php echo $rent['price']; ?>
-        <td><?php echo $rent['place']; ?>
-        <td><?php echo $rent['access']; ?>
-        <td><?php echo $rent['width']; ?>
-        <td><?php echo $rent['room_type']; ?>
-        <td><?php echo $rent['build_date']; ?>
-        <td><?php echo $rent['floor']; ?>
-        <td><?php echo $rent['created']; ?>
-    </tr>
-    <tr>
-            <td><?php echo $rent->id; ?>
-            <td><?php echo $rent->title; ?>
-            <td><?php echo $rent->url; ?>
-            <td><?php echo $rent->price; ?>
-            <td><?php echo $rent->place; ?>
-            <td><?php echo $rent->access; ?>
-            <td><?php echo $rent->width; ?>
-            <td><?php echo $rent->room_type; ?>
-            <td><?php echo $rent->build_date; ?>
-            <td><?php echo $rent->floor; ?>
-            <td><?php echo $rent->created; ?>
+            <td><?= h($rent->id); ?>
+            <td><?= h($rent->title); ?>
+            <td><?= h($rent->url); ?>
+            <td><?= h($rent->price); ?>
+            <td><?= h($rent->place); ?>
+            <td><?= h($rent->access); ?>
+            <td><?= h($rent->width); ?>
+            <td><?= h($rent->room_type); ?>
+            <td><?= h($rent->build_date); ?>
+            <td><?= h($rent->floor); ?>
+            <td><?= h($rent->created); ?>
         </tr>
 <?php
 endforeach;

@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 
 /**
  * Class WatchSuumoController
@@ -23,6 +24,45 @@ use Cake\Core\Configure;
 class TestController extends AppController
 {
     public function index() {
-        phpinfo();
+
+        $rents = $this->loadModel('Rents');
+        $query = $rents->find('all');
+        $query->where(['id <= ' => 5]);
+        $records = $query->toArray();
+
+        $targetTime = strtotime('2016-01-01 00:00:00');
+
+        for ($i = 0 ; $i < 365; $i++) {
+            $created = date('Y-m-d', strtotime($i . ' day', $targetTime));
+            foreach($records as $idx => $val) {
+
+                $rent = $rents->newEntity();
+
+                $rent->url = $val->url;
+                $rent->title = $val->title;
+                $rent->price = $val->price;
+                $rent->kanri_charge = $val->kanri_charge;
+                $rent->sikikin = $val->sikikin;
+                $rent->reikin = $val->reikin;
+                $rent->place = $val->place;
+                $rent->access = $val->address;
+                $rent->width = $val->width;
+                $rent->room_type = $val->room_type;
+                $rent->floor = $val->floor;
+                $rent->build_date = $val->build_date;
+                $rent->etc = $val->etc;
+                $rent->created = $created;
+
+                $rents->save($rent);
+            }
+        }
+
+    }
+
+    public function datetest() {
+
+        $targetTime = strtotime('2016-01-01 00:00:00');
+
+        $this->render('index');
     }
 }
