@@ -80,7 +80,9 @@ class ReportController extends AppController
 
             if ($value->url != $records[$key + 1]['url']) {
                 array_push($graphData, [
-                    'name' => $records[$key]['width'] . ' | ' .
+                    'name' =>
+                        $records[$key]['title'] . ' | ' .
+                        $records[$key]['width'] . ' | ' .
                         $records[$key]['room_type']  . ' | ' .
                         $records[$key]['floor'],
                     'data' =>$data
