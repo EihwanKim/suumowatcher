@@ -45,7 +45,7 @@ class WatchSuumoRentUtil {
                     $rent->reikin = $record['reikin'];
                     $rent->place = $record['place'];
                     $rent->access = $record['access'];
-                    $rent->width = $record['width'];
+                    $rent->width = str_replace('m2', '', $record['width']);
                     $rent->room_type = $record['room_type'];
                     $rent->floor = $record['floor'];
                     $rent->build_date = $record['build_date'];

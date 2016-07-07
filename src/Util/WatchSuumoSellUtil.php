@@ -52,7 +52,7 @@ class WatchSuumoSellUtil {
                             $this->record['access'] = $key_value_array[$i + 1];
                             break;
                         case '専有面積':
-                            $this->record['width'] = $key_value_array[$i + 1];
+                            $this->record['width'] = str_replace('m2', '', $key_value_array[$i + 1]);
                             break;
                         case '間取り':
                             $this->record['room_type'] = $key_value_array[$i + 1];
@@ -74,7 +74,7 @@ class WatchSuumoSellUtil {
             $sell->price = $this->record['price'] ;
             $sell->place = $this->record['place'] ;
             $sell->access = $this->record['access'] ;
-            $sell->width = $this->record['width'] ;
+            $sell->width = $this->getWidthFloat($this->record['width']) ;
             $sell->room_type = $this->record['room_type'] ;
             $sell->build_date = $this->record['build_date'] ;
             $sell->etc = $this->record['etc'] ;
@@ -122,9 +122,9 @@ class WatchSuumoSellUtil {
         });
     }
 
-    public function info () {
-        $this->autoRender = false;
-        phpinfo();
+    private function getWidthFloat($str) {
+
+        return substr($str, 0, strpos($str, '（'));
     }
 
 }

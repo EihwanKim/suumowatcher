@@ -19,21 +19,35 @@ class ReportController extends AppController
 
         if ($this->request->is('post')) {
 
-            if ($this->request->data['from']) {
-                $query->where(['created >=' => $this->request->data['from']]);
+            if ($this->request->data['createdFrom']) {
+                $query->where(['created >=' => $this->request->data['createdFrom']]);
             }
 
-            if ($this->request->data['to']) {
-                $query->where(['created >=' => $this->request->data['from']]);
+            if ($this->request->data['createdTo']) {
+                $query->where(['created <=' => $this->request->data['createdTo']]);
             }
+
+            if ($this->request->data['widthFrom']) {
+                $query->where(['width >=' => floatval($this->request->data['widthFrom'])]);
+            }
+
+            if ($this->request->data['widthTo']) {
+                $query->where(['width <=' => floatval($this->request->data['widthTo'])]);
+            }
+
         }
 
         $records = $query->toArray();
 
         $graphData = [];
         $data = [];
+        $min = 9999999999.0;
+
         foreach($records as $key => $value) {
 
+            if ($min > $value->price) {
+                $min = $value->price;
+            }
             array_push($data, [$value->created->getTimestamp() * 1000, floatval($value->price)]);
 
             if ($value->url != $records[$key + 1]['url']) {
@@ -49,8 +63,10 @@ class ReportController extends AppController
 
         }
 
+        $min = floor($min/10) * 10;
         $graphJson = json_encode($graphData);
         $this->set(compact('graphJson'));
+        $this->set(compact('min'));
 
     }
 
@@ -61,12 +77,20 @@ class ReportController extends AppController
 
         if ($this->request->is('post')) {
 
-            if ($this->request->data['from']) {
-                $query->where(['created >=' => $this->request->data['from']]);
+            if ($this->request->data['createdFrom']) {
+                $query->where(['created >=' => $this->request->data['createdFrom']]);
             }
 
-            if ($this->request->data['to']) {
-                $query->where(['created >=' => $this->request->data['from']]);
+            if ($this->request->data['createdTo']) {
+                $query->where(['created <=' => $this->request->data['createdTo']]);
+            }
+
+            if ($this->request->data['widthFrom']) {
+                $query->where(['width >=' => $this->request->data['widthFrom']]);
+            }
+
+            if ($this->request->data['widthTo']) {
+                $query->where(['width <=' => $this->request->data['widthTo']]);
             }
         }
 
@@ -74,10 +98,14 @@ class ReportController extends AppController
 
         $graphData = [];
         $data = [];
+        $min = 9999999999.0;
         foreach($records as $key => $value) {
 
             array_push($data, [$value->created->getTimestamp() * 1000, floatval($value->price)]);
 
+            if ($min > $value->price) {
+                $min = $value->price;
+            }
             if ($value->url != $records[$key + 1]['url']) {
                 array_push($graphData, [
                     'name' =>
@@ -93,8 +121,11 @@ class ReportController extends AppController
 
         }
 
+        $min = floor($min/1000) * 1000;
+
         $graphJson = json_encode($graphData);
         $this->set(compact('graphJson'));
+        $this->set(compact('min'));
 
     }
 

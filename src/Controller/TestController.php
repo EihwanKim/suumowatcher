@@ -25,44 +25,19 @@ class TestController extends AppController
 {
     public function index() {
 
-        $rents = $this->loadModel('Rents');
-        $query = $rents->find('all');
-        $query->where(['id <= ' => 5]);
-        $records = $query->toArray();
+        $query = TableRegistry::get('Sells');
+        $sells = $query->find()->select('width')->toArray();
 
-        $targetTime = strtotime('2016-01-01 00:00:00');
-
-        for ($i = 0 ; $i < 365; $i++) {
-            $created = date('Y-m-d', strtotime($i . ' day', $targetTime));
-            foreach($records as $idx => $val) {
-
-                $rent = $rents->newEntity();
-
-                $rent->url = $val->url;
-                $rent->title = $val->title;
-                $rent->price = $val->price;
-                $rent->kanri_charge = $val->kanri_charge;
-                $rent->sikikin = $val->sikikin;
-                $rent->reikin = $val->reikin;
-                $rent->place = $val->place;
-                $rent->access = $val->address;
-                $rent->width = $val->width;
-                $rent->room_type = $val->room_type;
-                $rent->floor = $val->floor;
-                $rent->build_date = $val->build_date;
-                $rent->etc = $val->etc;
-                $rent->created = $created;
-
-                $rents->save($rent);
-            }
+        foreach($sells as $sell) {
+            debug($sell->width);
+            debug($this->getWidthNum($sell->width));
         }
-
     }
 
-    public function datetest() {
+    private function getWidthNum($str) {
 
-        $targetTime = strtotime('2016-01-01 00:00:00');
-
-        $this->render('index');
+        return substr($str, 0, strpos($str, '（'));
     }
+
+
 }

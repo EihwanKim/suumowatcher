@@ -1,8 +1,10 @@
-<div id="container"></div>
+<div id="container" style="height: 500px;"></div>
 
 <?= $this->Form->create(null); ?>
-<?= $this->Form->input('from', ['readonly' => 'readonly', 'id' => 'createdFrom']); ?>
-<?= $this->Form->input('to', ['readonly' => 'readonly', 'id' => 'createdTo']); ?>
+<?= $this->Form->input('createdFrom', ['readonly' => 'readonly', 'id' => 'createdFrom']); ?>
+<?= $this->Form->input('createdTo', ['readonly' => 'readonly', 'id' => 'createdTo']); ?>
+<?= $this->Form->input('widthFrom'); ?>
+<?= $this->Form->input('widthTo'); ?>
 <?= $this->Form->button('Search'); ?>
 <?= $this->Form->end(); ?>
 
@@ -39,7 +41,7 @@ $(function () {
             title: {
                 text: '価格(万円)'
             },
-            min: 0
+            min: <?= $min ?>
         },
         tooltip: {
             headerFormat: '<b>{series.name}</b><br>',
