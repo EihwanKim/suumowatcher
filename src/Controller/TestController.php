@@ -26,7 +26,7 @@ class TestController extends AppController
     public function index() {
 
         $query = TableRegistry::get('Sells');
-        $sells = $query->find()->select('id', 'width')->toArray();
+        $sells = $query->find()->select(['id', 'width'])->toArray();
 
         foreach($sells as $sell) {
             debug($sell);
