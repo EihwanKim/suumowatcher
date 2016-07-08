@@ -31,8 +31,10 @@ class TestController extends AppController
         foreach($sells as $sell) {
             debug($sell->width);
             debug($this->getWidthNum($sell->width));
-            $sell->width = $this->getWidthNum($sell->width);
-            $query->updateAll($sell, ['Sells.id' => $sell->id]);
+            $update = $query->query()->update();
+            $update->set(['width' => $this->getWidthNum($sell->width)]);
+            $update->where(['Sells.id' => $sell->id]);
+            $update->execute();
         }
     }
 
