@@ -26,9 +26,10 @@ class TestController extends AppController
     public function index() {
 
         $query = TableRegistry::get('Sells');
-        $sells = $query->find()->select('width')->toArray();
+        $sells = $query->find()->select('id', 'width')->toArray();
 
         foreach($sells as $sell) {
+            debug($sell);
             debug($sell->width);
             debug($this->getWidthNum($sell->width));
             $update = $query->query()->update();
