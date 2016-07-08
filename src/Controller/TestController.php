@@ -33,7 +33,7 @@ class TestController extends AppController
             debug($this->getWidthNum($sell->width));
             $update = $query->query()->update();
             $update->set(['width' => $this->getWidthNum($sell->width)]);
-            $update->where(['Sells.id' => $sell->id]);
+            $update->where(['id' => $sell->id]);
             $update->execute();
         }
     }
