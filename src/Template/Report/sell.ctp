@@ -17,7 +17,7 @@ $(function () {
             type: 'spline'
         },
         title: {
-            text: '近隣マンション相場（賃貸）'
+            text: '近隣マンション相場（売買）'
         },
         subtitle: {
             text: ''
