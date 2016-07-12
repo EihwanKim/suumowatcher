@@ -49,6 +49,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <li><?=
+                    $this->Html->link('レポート（売買）', ['controller'=>'Report', 'action'=>'sell']);
+                    ?>
+                </li>
+                <li>
+                    <?=
+                    $this->Html->link('レポート（賃貸）', ['controller'=>'Report', 'action'=>'rent']);
+                    ?>
+                </li>
                 <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
                 <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
             </ul>
