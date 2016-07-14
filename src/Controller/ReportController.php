@@ -129,5 +129,4 @@ class ReportController extends AppController
         $this->set(compact('min'));
 
     }
-
 }

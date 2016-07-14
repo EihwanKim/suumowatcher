@@ -1,10 +1,8 @@
-<!-- File: src/Template/Pages/home.ctp -->
-<?php if (!$isAuthorized): ?>
+<!-- File: src/Template/Users/login.ctp -->
+
 <div class="users form">
     <?= $this->Flash->render('auth') ?>
-    <?= $this->Form->create(null, [
-        'url' => ['controller' => 'Users', 'action' => 'login']
-    ]) ?>
+    <?= $this->Form->create() ?>
     <fieldset>
         <legend><?= __('Please enter your username and password') ?></legend>
         <?= $this->Form->input('username') ?>
@@ -13,4 +11,3 @@
     <?= $this->Form->button(__('Login')); ?>
     <?= $this->Form->end() ?>
 </div>
-<?php endif; ?>
