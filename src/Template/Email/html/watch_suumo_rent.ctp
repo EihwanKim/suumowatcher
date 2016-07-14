@@ -24,6 +24,9 @@ foreach ($vars as $rent):
             <td><?= h($rent->title); ?>
             <td><?= h($rent->url); ?>
             <td><?= h($rent->price); ?>
+            <td><?= h($rent->kanri_charge); ?>
+            <td><?= h($rent->sikikin); ?>
+            <td><?= h($rent->reikin); ?>
             <td><?= h($rent->place); ?>
             <td><?= h($rent->access); ?>
             <td><?= h($rent->width); ?>
